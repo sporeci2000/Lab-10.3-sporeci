@@ -1,69 +1,22 @@
-# React + TypeScript + Vite
+ToDoContext - In this file, I created a React Context called TodoContext to manage the todo list for my app. I used useState to keep track of the todos and made functions to add, edit, delete, toggle and clear completed todos. I also saved the todos in localStorage so they don’t get lost when I refresh the page. The TodoProvider component lets me share the todos and these functions with any part of my app. When I want to use the todos inside a component, I just use the useTodos hook to get easy access.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FilterContext - In this file, I created a React Context called FilterContext to manage the current filter state in my Todo app. It keeps track of which todos to show: all, active or completed. I use React’s useState to store the filter value and provide a function to change it. The FilterProvider component makes this filter state and function available to any components wrapped inside it. To use the filter easily in components, I created a custom hook called useFilter, which ensures I’m accessing the filter context safely.
 
-Currently, two official plugins are available:
+ThemeContext - In this file, I created a React Context called ThemeContext to manage the light and dark theme for my app. It uses React’s useState to keep track of the current theme, which is either 'light' or 'dark'. The theme state is saved to localStorage so that the user’s choice is remembered even after refreshing the page. I also wrote a function toggleTheme that switches between the two themes. The ThemeProvider component wraps parts of the app that need access to the theme and applies the current theme as a CSS class to the container. To use the theme easily in my components, I created a custom hook called useTheme which safely accesses the theme context.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I created the TodoInput component which allows users to add new todos to the list. It uses React’s useState to keep track of the text the user types in the input field. When the user clicks the Add button, it calls the addTodo function from the TodoContext to add the new todo to the global state. After adding, it clears the input field so the user can type a new todo easily.
 
-## Expanding the ESLint configuration
+I created the TodoItem component to display each todo in the list. It shows the todo text with a checkbox to mark it completed or not. Users can click an Edit button to change the todo’s text and save their changes. There is also a Delete button to remove the todo from the list. This component uses functions from the TodoContext like toggleTodo, editTodo, and deleteTodo to update the global state.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+I created the TodoList component to display the list of todos based on the current filter. It uses the useTodos context to get all todos and the useFilter context to get the current filter value. Then, it filters the todos to show only those that match the filter: all todos, only active (not completed), or only completed. Finally, it maps over the filtered todos and renders a TodoItem component for each one. This keeps the list updated and responsive to the user’s filter choice.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+I created the FilterButtons component which lets users choose how to filter the todo list. It displays three buttons: "all", "active", and "completed". The component uses the useFilter context to read the current filter and update it when a button is clicked. The active filter button is shown in bold to help users see which filter is applied. This makes it easy to switch between different views of the todos.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+RESOURCES:
+https://legacy.reactjs.org/docs/context.html#reactcreatecontext   
+https://legacy.reactjs.org/docs/hooks-reference.html#usecontext 
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures 
+https://legacy.reactjs.org/docs/context.html 
+https://legacy.reactjs.org/docs/lists-and-keys.html 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions 
