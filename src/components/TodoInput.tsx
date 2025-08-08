@@ -28,11 +28,11 @@ export function TodoInput() {
 
                 // Update local state whenever the user types
                 onChange={e => setText(e.target.value)}
-                placeholder="Add a todo"
+                placeholder="What needs to be done?"
             />
 
             {/* Button to add the new todo when clicked */}
-            <button onClick={handleAdd}>Add</button>
+            <button onClick={handleAdd}>Add Todo</button>
         </div>
     );
 }

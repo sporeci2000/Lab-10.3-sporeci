@@ -18,7 +18,7 @@ For theme control, I created the ThemeToggleButton component. It shows a button 
 
 Finally, in the main App component, I combined everything. I wrapped the app’s UI inside the ThemeProvider, TodoProvider, and FilterProvider so that the entire component tree can access the respective states and functions. Inside these providers, I rendered the app header, theme toggle button, todo input, filter buttons, and the filtered todo list. This organization keeps the app clean, modular, and easy to manage.
 
-Difficulties
+Difficulties   
 The main difficulty I faced was understanding and effectively using the React Context API. It took some time to grasp how to properly create context providers, share state and functions through them, and consume that context safely in components using custom hooks. I also learned about the importance of organizing multiple contexts when managing different parts of the app’s state independently, such as todos, filters, and themes. Handling persistence with localStorage inside contexts was another challenge, but it helped me understand side effects better with the useEffect hook. Overall, working through these challenges deepened my knowledge of React state management and context design patterns.
 
 

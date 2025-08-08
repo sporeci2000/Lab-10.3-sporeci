@@ -13,7 +13,7 @@ export function FilterButtons() {
                 <button
                     key={f} // Unique key for each button 
                     onClick={() => setFilter(f as any)}
-                    style={{ fontWeight: filter === f ? 'bold' : 'normal' }}
+                    className={filter === f ? 'active' : ''}
                 >
                     {f} {/* Display the filter name on the button */}
 

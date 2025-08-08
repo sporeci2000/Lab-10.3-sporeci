@@ -36,7 +36,7 @@ export function TodoItem({ todo }: { todo: Todo }) {
     } else {
         // If not editing, show todo text with optional line-through
         todoContent = (
-            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+            <span className={todo.completed ? 'completed' : ''}>
                 {todo.text}
             </span>
         );

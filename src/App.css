@@ -1,42 +1,125 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General app container styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Light theme variables */
+.light {
+  --bg-color: #f9f9f9;
+  --text-color: #000000;
+  --button-bg: #ddd;
+  --button-hover-bg: #bbb;
+  --input-bg: #fff;
+  --input-border: #ccc;
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+li span {
+  color: var(--text-color);
+}
+
+/* Dark theme variables */
+.dark {
+  --bg-color: #222;
+  --text-color: #eee;
+  --button-bg: #555;
+  --button-hover-bg: #777;
+  --input-bg: #333;
+  --input-border: #555;
+}
+
+/* Main container styling */
+div {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--input-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input field */
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-right: 10px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Todo list styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--input-border);
+}
+
+/* Todo text */
+li span {
+  flex-grow: 1;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+/* Completed todo style */
+li span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Filter buttons container */
+div>div {
+  margin: 15px 0;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Filter buttons */
+div>div button {
+  margin: 0 5px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Bold active filter button */
+button.active {
+  font-weight: bold;
+  text-decoration: underline;
 }

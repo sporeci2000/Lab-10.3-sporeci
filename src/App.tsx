@@ -8,6 +8,8 @@ import { TodoList } from './components/TodoList';
 import { FilterButtons } from './components/FilterButtons';
 import { ThemeToggleButton } from './components/ThemeToggleButton';
 
+import './App.css';
+
 function App() {
   return (
     //Wrap the entire app with ThemeProvider to provide theme context
