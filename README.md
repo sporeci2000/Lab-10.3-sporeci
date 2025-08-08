@@ -1,22 +1,32 @@
-ToDoContext - In this file, I created a React Context called TodoContext to manage the todo list for my app. I used useState to keep track of the todos and made functions to add, edit, delete, toggle and clear completed todos. I also saved the todos in localStorage so they don’t get lost when I refresh the page. The TodoProvider component lets me share the todos and these functions with any part of my app. When I want to use the todos inside a component, I just use the useTodos hook to get easy access.
+In this lab, I built a Todo application using React and the Context API to manage global state in a clean and organized way. Instead of passing props deeply through components (prop drilling), I created multiple contexts to handle different parts of the application state independently. This helped keep the code easier to read and maintain.
 
-FilterContext - In this file, I created a React Context called FilterContext to manage the current filter state in my Todo app. It keeps track of which todos to show: all, active or completed. I use React’s useState to store the filter value and provide a function to change it. The FilterProvider component makes this filter state and function available to any components wrapped inside it. To use the filter easily in components, I created a custom hook called useFilter, which ensures I’m accessing the filter context safely.
+The first context I created is the TodoContext. This context manages the list of todos and all actions related to them, like adding new todos, editing existing ones, toggling their completed status, deleting them, and clearing all completed todos. I used React’s useState hook to hold the current list of todos. To keep data persistent across browser refreshes, I saved the todos to localStorage and reloaded them on app start. The TodoProvider component makes this todo data and the related functions available to any child component. To make it simpler to access these in components, I wrote a custom hook called useTodos.
 
-ThemeContext - In this file, I created a React Context called ThemeContext to manage the light and dark theme for my app. It uses React’s useState to keep track of the current theme, which is either 'light' or 'dark'. The theme state is saved to localStorage so that the user’s choice is remembered even after refreshing the page. I also wrote a function toggleTheme that switches between the two themes. The ThemeProvider component wraps parts of the app that need access to the theme and applies the current theme as a CSS class to the container. To use the theme easily in my components, I created a custom hook called useTheme which safely accesses the theme context.
+Next, I created the FilterContext to manage which todos are visible based on the user’s selection. The filter can be “all,” “active” (not completed), or “completed.” I used useState again to hold the current filter and a function to update it. The FilterProvider component shares this filter state and setter function across the app. Like with todos, I added a custom hook, useFilter, so components can easily read and update the filter value.
 
-I created the TodoInput component which allows users to add new todos to the list. It uses React’s useState to keep track of the text the user types in the input field. When the user clicks the Add button, it calls the addTodo function from the TodoContext to add the new todo to the global state. After adding, it clears the input field so the user can type a new todo easily.
+For the app’s appearance, I added a ThemeContext. It keeps track of whether the app is in light or dark mode using useState. The current theme is saved to localStorage so the user’s choice stays even after closing or refreshing the browser. The context also provides a toggleTheme function to switch between light and dark modes. The ThemeProvider wraps relevant parts of the app and applies the theme as a CSS class on the container element. I created the useTheme hook so components can easily access the current theme and toggle function.
 
-I created the TodoItem component to display each todo in the list. It shows the todo text with a checkbox to mark it completed or not. Users can click an Edit button to change the todo’s text and save their changes. There is also a Delete button to remove the todo from the list. This component uses functions from the TodoContext like toggleTodo, editTodo, and deleteTodo to update the global state.
+I built several components that use these contexts to create the app’s functionality. The TodoInput component lets users add new todos by typing in a text input and clicking an Add button. It manages its own input state and calls the addTodo function from the todo context to update the global todo list.
 
-I created the TodoList component to display the list of todos based on the current filter. It uses the useTodos context to get all todos and the useFilter context to get the current filter value. Then, it filters the todos to show only those that match the filter: all todos, only active (not completed), or only completed. Finally, it maps over the filtered todos and renders a TodoItem component for each one. This keeps the list updated and responsive to the user’s filter choice.
+The TodoItem component represents each todo in the list. It shows the todo’s text with a checkbox to mark it completed or not, and buttons to edit or delete the todo. The editing mode lets users change the todo’s text and save the changes. All modifications use functions from the todo context, keeping the app’s state consistent.
 
-I created the FilterButtons component which lets users choose how to filter the todo list. It displays three buttons: "all", "active", and "completed". The component uses the useFilter context to read the current filter and update it when a button is clicked. The active filter button is shown in bold to help users see which filter is applied. This makes it easy to switch between different views of the todos.
+The TodoList component displays the list of todos filtered according to the current filter state. It uses the useTodos hook to get all todos and useFilter to get the active filter. It filters the todos accordingly and renders a TodoItem for each visible todo, updating automatically when the filter or todos change.
+
+To allow users to change the filter, I created the FilterButtons component. It shows three buttons labeled “all,” “active,” and “completed.” Clicking a button updates the filter in the filter context. The currently selected filter button is shown in bold to help users see which filter is active.
+
+For theme control, I created the ThemeToggleButton component. It shows a button that lets users switch between light and dark mode. The button label dynamically changes to indicate which mode the app will switch to when clicked.
+
+Finally, in the main App component, I combined everything. I wrapped the app’s UI inside the ThemeProvider, TodoProvider, and FilterProvider so that the entire component tree can access the respective states and functions. Inside these providers, I rendered the app header, theme toggle button, todo input, filter buttons, and the filtered todo list. This organization keeps the app clean, modular, and easy to manage.
+
+Difficulties
+The main difficulty I faced was understanding and effectively using the React Context API. It took some time to grasp how to properly create context providers, share state and functions through them, and consume that context safely in components using custom hooks. I also learned about the importance of organizing multiple contexts when managing different parts of the app’s state independently, such as todos, filters, and themes. Handling persistence with localStorage inside contexts was another challenge, but it helped me understand side effects better with the useEffect hook. Overall, working through these challenges deepened my knowledge of React state management and context design patterns.
+
 
 RESOURCES:
-https://legacy.reactjs.org/docs/context.html#reactcreatecontext   
-https://legacy.reactjs.org/docs/hooks-reference.html#usecontext 
-https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures 
-https://legacy.reactjs.org/docs/context.html 
-https://legacy.reactjs.org/docs/lists-and-keys.html 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions 
+https://legacy.reactjs.org/docs/context.html#reactcreatecontext    
+https://legacy.reactjs.org/docs/hooks-reference.html#usecontext   
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage    
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures       
+https://legacy.reactjs.org/docs/context.html    
+https://legacy.reactjs.org/docs/lists-and-keys.html     
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions    
